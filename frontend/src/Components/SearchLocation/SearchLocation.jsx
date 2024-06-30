@@ -9,10 +9,9 @@ const SearchLocation = ({ setSearchResults }) => {
         try {
             const response = await fetch(`http://localhost:4000/getLocations?search=${query}`);
             const results = await response.json();
-            console.log('re', results)
             setSearchResults(results);
         } catch (error) {
-            setError('An error occurred while searching for locations');
+            setError('error while searching for locations');
         }
     };
 

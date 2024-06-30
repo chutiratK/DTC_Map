@@ -13,36 +13,33 @@ const AddLocationForm = () => {
         latitude: 0
     })
     const navigate = useNavigate();
-    const [error, setError] = useState(null);
 
     const changeHandler = (e) => {
         setLocationDetails({...locationDetails, [e.target.name]:e.target.value})
     }
-    const addLocation = async ()=> {
+    const addLocation = async (e) => {
+        e.preventDefault();
         let location = locationDetails;
         try {
-            await fetch('http://localhost:4000/addLocations', {
+            const response = await fetch('http://localhost:4000/addLocations', {
                 method: 'POST',
                 headers: {
-                    Accepts: 'application/json',
+                    Accept: 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(location),
-            })
-            .then((res)=>res.json())
-            .then((data) => {
-                if (data.success) {
-                    alert('Added Location Success');
-                    navigate('/');
-                } else {
-                    alert('Failed to add location');
-                }
             });
+            const data = await response.json();
+            if (data.success) {
+                alert('Added Location Success');
+                navigate('/');
+            } else {
+                alert('Failed to add location');
+            }
         } catch (error) {
-            setError('An error occurred while adding the location');
+            console.error('Failed to add location', error);
         }
-        
-    }
+    };
 
     return (
         <div className="add-location">
@@ -133,7 +130,6 @@ const AddLocationForm = () => {
                     />
                 </div>
                 <button type='submit' className='addLocation-btn'>SUBMIT</button>
-                {error && <p className="error">{error}</p>}
             </form>
             
         </div>

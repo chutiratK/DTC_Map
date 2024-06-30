@@ -7,7 +7,6 @@ const PORT = 4000;
 mongoose.connect("mongodb+srv://chubchubjm10:f0832934887@cluster0.1u4qxyy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
 const Location = mongoose.model('Location', {
-
     name: {
         type: String,
         required: true, 
@@ -51,9 +50,14 @@ app.get('/getLocations', async (req, res) => {
             { postalCode: { $regex: search, $options: 'i' } }
         ]
     } : {};
-    const locations = await Location.find(query);
-    res.status(200).send(locations);
+    try {
+        const locations = await Location.find(query);
+        res.status(200).send(locations);
+    } catch (error) {
+        res.status(500).send({ message: 'Error fetching location list', error });
+    }
 });
+
 app.post('/addLocations', async (req, res) => {
     const { name, province, description, district, postalCode, longitude, latitude } = req.body;
     const newLocation = new Location({
@@ -65,20 +69,26 @@ app.post('/addLocations', async (req, res) => {
         longitude,
         latitude
     });
-    await newLocation.save();
-    res.json({
-        success: true,
-        name: req.body.name, 
-        newLocation
-    })
+    try {
+        await newLocation.save();
+        res.json({
+            success: true,
+            newLocation
+        });
+    } catch (error) {
+        res.status(500).send({ message: 'Error adding location', error });
+    }
 });
+
 app.post('/removeLocation', async (req, res)=> {
-    await Location.findOneAndDelete({_id: req.body._id});
-    console.log('remove')
-    res.json({
-        success: true,
-        name: req.body.name
-    })
+    try {
+        await Location.findOneAndDelete({ _id: req.body._id });
+        res.json({
+            success: true
+        });
+    } catch (error) {
+        res.status(500).send({ message: 'Error removing location', error });
+    }
 })
 
 app.listen(PORT, () => {

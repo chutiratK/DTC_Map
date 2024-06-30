@@ -20,7 +20,7 @@ const markDestinationIcon = new L.Icon({
 })
 
 const Map = () => {
-    const [center, setCenter] = useState({lat:13.7331, lng:100.5605});
+    const [center, setCenter] = useState({lat:13.7563, lng:100.5018});
     const [searchResults, setSearchResults] = useState([]);
     const [userPosition, setUserPosition] = useState(null);
     const [selectedDes, setSelectedDes] = useState(null);
@@ -30,10 +30,12 @@ const Map = () => {
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
-            setUserPosition({
+            const userLocation = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
-            });
+            };
+            setUserPosition(userLocation);
+            setCenter(userLocation);
         });
     }, []);
 
