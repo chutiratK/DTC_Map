@@ -1,0 +1,74 @@
+.list-location-container li {
+    width: 33vh;
+    height: 100%;
+    background: #e5e5e557;
+    border-radius: 20px;
+    list-style: none;
+    padding: 28px;
+    display: flex;
+    margin-bottom: 25px;
+    font-size: 17px;
+    font-family: 'poppins';
+    cursor: pointer;
+    flex-direction: column;
+}
+.list-location-container span {
+    font-size: 20px;
+    font-weight: 500;
+}
+.list-location-container {
+    height: 60vh;
+    overflow-y: scroll;
+}
+.list-location-container button {
+    border: none;
+    background: none;
+}
+.list-location-container img {
+    width: 25px;
+}
+.list-location {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.remove-btn {
+    margin-left: auto;
+}
+.remove-btn img {
+    cursor: pointer;
+}
+.list-location-container li:hover {
+    background: #e5e5e522;
+    box-shadow: 3px 7px 20px 0px #00000021;
+}
+@media(max-width: 1548px) {
+    .list-location-container li {
+        width: 28vh;
+        padding: 16px;
+        margin-bottom: 14px;
+        font-size: 14px;
+    }
+    .list-location-container span {
+        font-size: 18px;
+    }
+    .list-location-container {
+        height: 42vh;
+    }
+}
+@media(max-width: 800px) {
+    .list-location-container li {
+        width: 20vh;
+        padding: 12px;
+        margin-bottom: 10px;
+        font-size: 10px;
+    }
+    .list-location-container span {
+        font-size: 14px;
+    }
+    .list-location-container {
+        height: 48vh;
+    }
+    .remove-btn img {
+        width: 16px;
+    }
+}

@@ -1,0 +1,67 @@
+.add-location {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 800px;
+    padding: 30px 50px;
+    margin: 20px 30px;
+    border-radius: 20px;
+    background: #ededed;
+    margin: 60px auto;
+    box-shadow: 3px 7px 20px 0px #0000009e;
+}
+.addLocation-itemField {
+    width: 100%;
+    color: #7b7b7b;
+    font-size: 16px;
+}
+.addLocation-itemField p {
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+}
+.addLocation-itemField input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    padding-left: 15px;
+    border: 1px solid #c3c3c3c3;
+    outline: none;
+    color: #7b7b7b;
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+.addLocation-btn {
+    margin-top: 20px;
+    width: 160px;
+    height: 50px;
+    border-radius: 6px;
+    background: #6079ff;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+.addLocation-field {
+    display: flex;
+    gap: 20px;
+}
+@media(max-width: 800px) {
+    .add-location {
+        width: auto;
+        padding: 30px;
+        margin: 20px;
+    }
+    .add-location h1 {
+        font-size: 20px;
+    }
+    .addLocation-itemField p {
+        font-size: 15px;
+    }
+}
+@media(max-width: 500px) {
+    .addLocation-field {
+        display: block;
+    }
+}
